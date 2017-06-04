@@ -1,52 +1,29 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-Game.Tile = function(properties){
-//Tile constructor    
-    
+Game.Tile = function(properties) {
     properties = properties || {};
-    Game.Glyph.call(this,properties);
+    // Call the Glyph constructor with our properties
+    Game.Glyph.call(this, properties);
+    // Set up the properties. We use false by default.
     this._isWalkable = properties['isWalkable'] || false;
     this._isDiggable = properties['isDiggable'] || false;
 };
-
+// Make tiles inherit all the functionality from glyphs
 Game.Tile.extend(Game.Glyph);
 
-Game.Tile.prototype.isWalkable = function(){
+// Standard getters
+Game.Tile.prototype.isWalkable = function() {
     return this._isWalkable;
 }
-
-Game.Tile.prototype.isDiggable = function(){
+Game.Tile.prototype.isDiggable = function() {
     return this._isDiggable;
 }
 
-Game.Tile.nullTile = new Game.Tile({});
-
+Game.Tile.nullTile = new Game.Tile({})
 Game.Tile.floorTile = new Game.Tile({
-   character:'.',
-   isWalkable:true
+    character: '.',
+    isWalkable: true
 });
-
 Game.Tile.wallTile = new Game.Tile({
-    character:'#',
-    foreground:'goldenrod',
-    isDiggable:true});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    character: '#',
+    foreground: 'goldenrod',
+    isDiggable: true
+});
