@@ -10,8 +10,8 @@ Game.Tile = function(properties){
     
     properties = properties || {};
     Game.Glyph.call(this,properties);
-    this._isWalkable = properties.isWalkable || false;
-    this._isDiggable = properties.isDiggable || false;
+    this._isWalkable = properties['isWalkable'] || false;
+    this._isDiggable = properties['isDiggable'] || false;
 };
 
 Game.Tile.extend(Game.Glyph);

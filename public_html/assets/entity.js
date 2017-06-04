@@ -7,17 +7,17 @@
 
 Game.Entity = function(properties){
     
-    properties || {};
+    properties = properties || {};
     
     Game.Glyph.call(this,properties);
     
-    this._name = properties.name || '';
-    this._x = properties.x || 0;
-    this._y = properties.y || 0;
+    this._name = properties['name'] || '';
+    this._x = properties['x'] || 0;
+    this._y = properties['y'] || 0;
     
     this._attachedMixins = {};
     
-    var mixins = properties.mixins || [];
+    var mixins = properties['mixins'] || [];
     
     for(var i =0;i<mixins.length;i++){
         
@@ -33,38 +33,40 @@ Game.Entity = function(properties){
     }
 };
 
+Game.Entity.extend(Game.Glyph);
+
 Game.Entity.prototype.setName = function(name){
     this._name = name;
-}
+};
 
-Game.Entity.getName = function(){
+Game.Entity.prototype.getName = function(){
     return this._name;
-}
+};
 
-Game.Entity.setX = function(x){
+Game.Entity.prototype.setX = function(x){
     this._x = x;
-}
+};
 
-Game.Entity.getX = function(){
+Game.Entity.prototype.getX = function(){
     return this._x;
-}
+};
 
 Game.Entity.prototype.setY = function(y){
     this._y = y;
-}
+};
 
 Game.Entity.prototype.getY = function(){
     return this._y;
-}
+};
 
 Game.Entity.prototype.hasMixin = function(obj){
     
     if(typeof obj === 'object'){
-        return this_attachedMixins[obj.name];
+        return this._attachedMixins[obj.name];
     }else{
         return this._attachedMixins[name];
     }
-}
+};
 
 
 

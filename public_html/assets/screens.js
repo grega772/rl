@@ -35,8 +35,6 @@ Game.Screen.playScreen = {
     
     _map:null,
     _player:null,
-    _centerX:0,
-    _centerY:0,
     
     enter:function(){
         
@@ -76,7 +74,7 @@ Game.Screen.playScreen = {
         this._map = new Game.Map(map);
         this._player = new Game.Entity(Game.PlayerTemplate);
         var position = this._map.getRandomFloorPosition();
-        this._player.setX(postion.x);
+        this._player.setX(position.x);
         this._player.setY(position.y);
         
     },
@@ -91,18 +89,18 @@ Game.Screen.playScreen = {
         var topLeftX = Math.max(0,this._player.getX()-(screenWidth/2));
         topLeftX = Math.min(topLeftX,this._map.getWidth() - screenWidth);
         
-        var topLeftY = Math.max(0,this._play.getY()-(screenHeight/2));
+        var topLeftY = Math.max(0,this._player.getY()-(screenHeight/2));
         topLeftY = Math.min(topLeftY, this._map.getHeight() - screenHeight);
         
         for(var x=topLeftX;x<topLeftX+screenWidth;x++){
             for(var y = topLeftY;y<topLeftY+screenHeight;y++){
-                var glyph = this._map.getTile(x,y,).getGlyph();
+                var tile = this._map.getTile(x,y);
                 display.draw(
                 x-topLeftX,
                 y-topLeftY,
-                glyph.getChar(),
-                glyph.getForeground(),
-                glyph.getBackground());
+                tile.getChar(),
+                tile.getForeground(),
+                tile.getBackground());
             }
         }
         
@@ -142,7 +140,7 @@ Game.Screen.playScreen = {
     },
     move: function(dX,dY){
         var newX = this._player.getX() + dX;
-        var newY = this._payer.getY() + dY;
+        var newY = this._player.getY() + dY;
         
         this._player.tryMove(newX,newY,this._map);
     }

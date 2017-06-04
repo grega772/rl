@@ -25,15 +25,17 @@ Game.Mixins.Moveable = {
         }
         return false;
     }
-}
+};
 
-Game.Screen.playScreen = {
-    _map:null,
-    _player:null,
-    enter:function(){
-        
-    }
-}
+Game.PlayerTemplate = {
+    character: '@',
+    foreground: 'white',
+    background: 'black',
+    mixins: [Game.Mixins.Moveable]
+};
+
+
+
 
 
 
